@@ -1,0 +1,35 @@
+﻿@{
+	Layout = "~/Layouts/Page.cshtml";
+}
+
+<script>
+
+	function ActivateSearch () {
+		let form_data = new FormData (document.getElementById ("search_form"));
+
+		fetch ("/Jobs/Search", {
+			method: "post",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify (Object.fromEntries (form_data))
+		}).then (response => response.json ()).then (response => {
+			ParseDiceResults (response.dice);
+		});
+	}
+
+</script>
+
+<div>Search for Jobs</div>
+
+<form id="search_form">
+	<div>
+		<label for="keywords">Keywords</label>
+		<input type="text" id="keywords" name="keywords" />
+	</div>
+
+	<div>
+		<label for="location">Location</label>
+		<input type="text" id="location" name="location" />
+	</div>
+</form>
+
+<button id="search_button" onclick="ActivateSearch ()">Search</button>

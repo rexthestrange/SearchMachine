@@ -1,0 +1,6 @@
+﻿@model SearchMachine.Helpers.FileControlTagHelper;
+
+<div class="stacked">
+	<input type="text" id="@($"{Model.id}_filename")" readonly value="Click to select a file" />
+	<input type="file" id="@Model.id" name="@Model.name" style="opacity: 0" onchange="this.firstSibling.value = this.files?.[0]?.name" />
+</div>

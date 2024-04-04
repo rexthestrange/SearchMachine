@@ -1,0 +1,15 @@
+﻿@using SearchMachine.Classes;
+@using SearchMachine.Models;
+
+@{
+	Layout = "~/Layouts/Main.cshtml";
+	UserAccountModel? user = new UserAccount (Context).Current;
+}
+
+<div class="full-width header">
+	<div>SearchMachine</div>
+	<div>@user?.DisplayName</div>
+</div>
+<div class="full-page page-centered">
+	@RenderBody()
+</div>

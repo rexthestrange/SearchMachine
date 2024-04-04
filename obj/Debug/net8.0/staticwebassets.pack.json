@@ -1,0 +1,85 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SearchMachine.bundle.scp.css",
+      "PackagePath": "staticwebassets\\SearchMachine.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Images\\eyecandy.gif",
+      "PackagePath": "staticwebassets\\Images\\eyecandy.gif"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\accounts.js",
+      "PackagePath": "staticwebassets\\Scripts\\accounts.js"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\applications.js",
+      "PackagePath": "staticwebassets\\Scripts\\applications.js"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\common.js",
+      "PackagePath": "staticwebassets\\Scripts\\common.js"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\dice.js",
+      "PackagePath": "staticwebassets\\Scripts\\dice.js"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\indeed.js",
+      "PackagePath": "staticwebassets\\Scripts\\indeed.js"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\job_search.js",
+      "PackagePath": "staticwebassets\\Scripts\\job_search.js"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\machine.js",
+      "PackagePath": "staticwebassets\\Scripts\\machine.js"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\manifest.json",
+      "PackagePath": "staticwebassets\\Scripts\\manifest.json"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\transitions.js",
+      "PackagePath": "staticwebassets\\Scripts\\transitions.js"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Scripts\\worker_script.js",
+      "PackagePath": "staticwebassets\\Scripts\\worker_script.js"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Styles\\Main.scss",
+      "PackagePath": "staticwebassets\\Styles\\Main.scss"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Styles\\main.css",
+      "PackagePath": "staticwebassets\\Styles\\main.css"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\Styles\\main.min.css",
+      "PackagePath": "staticwebassets\\Styles\\main.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\DotNet\\SearchMachine\\Application\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SearchMachine.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.SearchMachine.props",
+      "PackagePath": "build\\SearchMachine.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.SearchMachine.props",
+      "PackagePath": "buildMultiTargeting\\SearchMachine.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.SearchMachine.props",
+      "PackagePath": "buildTransitive\\SearchMachine.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

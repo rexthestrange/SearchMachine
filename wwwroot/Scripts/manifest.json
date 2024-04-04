@@ -1,0 +1,52 @@
+{
+	"manifest_version": 3,
+	"name": "Job Link Tracer",
+	"version": "1.0",
+	"description": "Keep a note of applied jobs",
+	"background": {
+		"service_worker": "worker_script.js"
+	},
+	"content_scripts": [
+		{
+			"js": [
+				"common.js",
+				"dice.js"
+			],
+			"matches": [
+				"https://www.dice.com/*"
+			],
+			"run_at": "document_start",
+			"all_frames": true
+		},
+		{
+			"js": [
+				"common.js",
+				"indeed.js"
+			],
+			"matches": [
+				"https://*.indeed.com/*"
+			],
+			"run_at": "document_start",
+			"all_frames": true
+		},
+		{
+			"js": [
+				"common.js",
+				"machine.js"
+			],
+			"matches": [ "https://localhost:44339/*"],
+			"run_at": "document_start"
+		}
+	],
+	"host_permissions": [
+		"<all_urls>"
+	],
+	"permissions": [
+		"webNavigation",
+		"scripting",
+		"storage",
+		"tabs",
+		"notifications",
+		"contentSettings"
+	]
+}

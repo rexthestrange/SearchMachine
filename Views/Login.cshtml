@@ -1,0 +1,98 @@
+﻿@addTagHelper *, SearchMachine
+
+@using System.Diagnostics;
+
+@{
+	Layout = "~/Layouts/main.cshtml";
+	ViewData["Title"] = "Home";
+}
+
+<script>
+
+	var ShowLoginScreen = () => {
+		document.getElementById("loading_screen").style.display = "none";
+		document.getElementById("login_screen").style.display = null;
+	}
+
+	document.addEventListener ("DOMContentLoaded", event => {
+		if (!document.readyState == "complete") return;
+		let user_id = localStorage.getItem ("user_id");
+
+		if (user_id == null) return ShowLoginScreen ();
+
+		fetch ("/Accounts/Return", {
+			method: "post",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify ({ user_id: user_id })
+		}).then (response => response.json ()).then (response => {
+			if (response.success) return ShowPage ("/Home", [
+				{ "user_id": user_id }
+			]);
+			ShowLoginScreen ();
+		});
+	});
+
+</script>
+
+<div class="page-centered">
+
+	<popup id="signin_popup">
+		<div id="email_form" class="transition" style="display: block; opacity: 1">
+			<div class="prompt">Please enter your email address</div>
+			<input type="text" id="user_email" value="@(Debugger.IsAttached ? "rex@rogerlmain.com" : null)" />
+			<button onclick="LoginUser ()">Send Code</button>
+		</div>
+		<div id="email_eyecandy"class="transition column-centered" style="display: none; opacity: 0">
+			<img class="eyecandy" src="~/Images/eyecandy.gif" />
+			Looking you up. One moment, please.
+		</div>
+	</popup>
+
+	<popup id="signin_response">
+		<div class="prompt">
+			Please enter the login code that was<br />
+			sent to your registered email address.
+		</div>
+		<div>
+			<input type="text" id="login_code" />
+			<button onclick="ActivateLogin (document.getElementById ('login_code').value, document.getElementById ('stay_logged_in').checked)">Login</button>
+		</div>
+		<div>
+			<input type="checkbox" id="stay_logged_in" name="stay_logged_in" checked />
+			<label for="stay_logged_in">Keep me logged in</label>
+		</div>
+	</popup>
+
+	<popup id="invalid_email_popup">
+		<div class="prompt"></div>
+		<div class="right-justified">
+			<button onclick="hide_element ('invalid_email_popup', () => show_element ('signin_popup'));">Try again</button>
+		</div>
+	</popup>
+
+	<popup id="validation_error">
+		<div class="prompt">
+			Invalid validation code.
+		</div>
+		<button onclick="hide_element ('validation_error', () => show_element ('signin_response'))">Try again</button>
+		<button onclick="hide_element ('validation_error', () => show_element ('signin_popup'))">Send new code</button>
+	</popup>
+
+	<div id="loading_screen">
+		<h1>Loading...</h1>
+	</div>
+
+	<div id="login_screen" style="display: none">
+
+		<h1>Sign in or continue as a guest</h1>
+
+		<div class="row-centered">
+			<div class="row-grid nowrap">
+				<button id="member_button" onclick="show_element ('signin_popup')">Sign in</button>
+				<button id="guest_button">Continue as guest</button>
+			</div>
+		</div>
+
+	</div>
+
+</div>

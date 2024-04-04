@@ -1,0 +1,11 @@
+create procedure save_skill (@skill varchar (32), @id uniqueidentifier output) as begin
+
+	if not exists (select * from skills where skill = @skill) insert into skills values (
+		newid (), 
+		@skill
+	);
+
+	select @id = id from skills where skill = @skill;
+
+end;
+

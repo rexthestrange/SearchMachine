@@ -1,0 +1,112 @@
+﻿@using System.Diagnostics;
+
+@addTagHelper *, SearchMachine
+
+@model SearchMachine.Models.HomepageModel
+
+@{
+	Layout = "~/Layouts/Page.cshtml";
+	ViewData ["title"] = "Home";
+}
+
+<div class="column-grid">
+
+	<popup id="skill_prompt">
+		<input type="hidden" id="skill_id" />
+		<div class="prompt">Do you possess the following skill:</div>
+		<div id="skill_prompt_skill" class="prompt"></div>
+		<div class="button-panel">
+			<button name="skill_yes" onclick="update_user_skill (true)">Yes</button>
+			<button name="skill_no" onclick="update_user_skill (false)">No</button>
+		</div>
+	</popup>
+
+	<popup id="skill_rating">
+		<div id="job_name"></div>
+		<div id="company_name" class="prompt"></div>
+		<div class="prompt">You have a skill rating of <span name="percentage"></span>%</div>
+		<div class="prompt">Would you like to apply for this position?</div>
+		<div class="button-panel">
+			<button name="apply_yes" onclick="send_application ()">Yes</button>
+			<button name="apply_no" onclick="save_application (current_job.id)">No</button>
+			<button name="apply_never" onclick="save_application (current_job.id, false)">Never</button>
+		</div>
+	</popup>
+
+	<popup id="notification">
+		<div class="prompt" name="notification_text"></div>
+		<div class="button-panel">
+			<button name="close_button" onclick="hide_element ('notification')">Okay</button>
+		</div>
+	</popup>
+
+	<div class="row-list">
+
+		<div class="column-grid">
+
+			<div class="form-elements prompt">
+
+				<div class="list">
+					<label for="search_terms">Search Terms</label>
+					<div class="subtext">Comma separated</div>
+				</div>
+				<input type="text" id="search_terms" name="search_terms" value="@(Debugger.IsAttached ? "PHP, C#, Java, .net, javascript" : null)" />
+
+				<label for="cover_letter_upload">Cover Letter</label>
+				<file-control id="cover_letter_upload" />
+
+			</div>
+
+			<div class="row-block">
+				<div>
+					<input type="checkbox" id="dice_checkbox" name="site_checkbox" value="Dice" @(Debugger.IsAttached ? "checked" : String.Empty) />Dice<br />
+					<input type="checkbox" id="indeed_checkbox" name="site_checkbox" value="Indeed" />Indeed<br />
+					<input type="checkbox" id="linkedin_checkbox" name="site_checkbox" value="Linkedin" />LinkedIn<br />
+					<input type="checkbox" id="zip_checkbox" name="site_checkbox" value="Zip Recruiter" />LinkedIn<br />
+				</div>
+				<div>
+					<div>
+						<label for="auto_apply">Auto-apply</label>
+						<input type="checkbox" id="auto_apply" checked />
+					</div>
+					<div class="row-centered">
+						<label for="threshold_indicator" class="centered">Threshold</label>
+						<number-input id="threshold" min="0" max="100" default-value="65" />
+					</div>
+					<div class="space-before">
+						<div class="inline">
+							<div>If unqualified mark job as:</div>
+							<div class="spaced-out">
+								<div>
+									<input type="radio" id="no_response" name="unqualified_response" value="no" />
+									<label for="no_response">No</label>
+								</div>
+								<div>
+									<input type="radio" id="never_response" name="unqualified_response" value="never" checked />
+									<label for="never_response">Never</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button id="applied_jobs_button" name="applied_jobs_button" class="dynamic-button" onclick="get_applied_jobs ()">
+				<img src="~/Images/eyecandy.gif" class="eyecandy" style="display: none" />
+				<span class="button-text">Update Applied Jobs</span>
+			</button>
+
+			<button id="search_jobs_button" name="search_jobs_button" class="dynamic-button" onclick="search_jobs ()">
+				<img src="~/Images/eyecandy.gif" class="eyecandy" style="display: none" />
+				<span class="button-text">Search Jobs</span>
+			</button>
+
+		</div>
+
+		<div id="progress_window" class="full-page" style="min-width: 350px">Idle</div>
+
+	</div>
+
+	<div id="debug"></div>
+
+</div>

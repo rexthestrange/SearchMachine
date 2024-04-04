@@ -1,0 +1,60 @@
+﻿@model SearchMachine.Helpers.NumberSelectorTagHelper;
+
+<script>
+
+	function update_number_input (event, indicator_id) {
+		document.getElementById (indicator_id).value = event.currentTarget.value;
+	}
+
+	function verify_numeric_keystroke (event, decimal = false, negative = false, leading_zeros = false) {
+
+		let value = event.target.value;
+		let new_value = `${value.substring(0, event.target.selectionStart)}${event.key}${value.substring(event.target.selectionEnd)}`;
+		let integer_value = parseInt (new_value);
+
+		if (NONPRINTABLE_CHARACTERS.includes (event.key)) return true;
+
+		if (!decimal && (event.key == "Period")) return false;
+		if (!negative && (event.key == "Minus")) return false;
+		if (!leading_zeros && (event.key == "Digit0") && (event.target.selectionStart == 0)) return false;
+
+		if (isNaN (integer_value)) return false;
+
+		if (integer_value < parseInt (event.currentTarget.getAttribute ("min"))) return false;
+		if (integer_value > parseInt (event.currentTarget.getAttribute ("max"))) return false;
+
+		return true;
+
+	}// verify_numeric_keystroke;
+
+
+	function update_value (event, slider_id) {
+		if (verify_numeric_keystroke (event)) document.getElementById (slider_id).value = integer_value;
+	}
+
+</script>
+
+<style>
+	input.number-slider {
+		padding: 0
+	}
+
+	input.number-input {
+		width: 3em; 
+		display: flex; 
+		align-items: center; 
+		justify-content: flex-end;
+		border: none;
+		background-color: transparent;
+		padding: 0; margin: 0;
+		text-align: right;
+	}
+
+	input.number-input:focus { outline: none }
+
+</style>
+
+<input type="range" id="@(Model.id)_slider" onchange="update_number_input (event, '@(Model.id)_indicator')" class="number-slider" value="@Model.defaultValue" />
+<input type="text" inputmode="numeric" min="@Model.min" max="@Model.max" id="@(Model.id)_indicator" class="number-input" value="@Model.defaultValue"
+   onkeydown="return update_value (event, '@(Model.id)_slider')">
+</input>%
